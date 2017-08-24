@@ -7,7 +7,7 @@ calculator program yourself in this file.
 """
 
 from arithmetic import *
-
+from functools import reduce
 
 # Your code goes here
 # No setup
@@ -46,34 +46,39 @@ while True:
 
     #input tokenization:
     tokens = input_string.split(" ")
+
+    lista = tokens[1:]
+
     result = ""
 
-    to_int1 = int(tokens[1])
+    # to_int1 = int(tokens[1])
     operator = tokens[0]
 
-    if len(tokens) == 3:
-        to_int2 = int(tokens[2])
+    # if len(tokens) == 3:
+    #     to_int2 = int(tokens[2])
+
 
     if operator == "q":
         print "You decided to quit the program"
         break
 
     elif operator == "+":
-        result = add(to_int1, to_int2)
+        result = reduce(add, lista)
+
     elif operator == "-":
-        result = subtract(to_int1, to_int2)
+        result = reduce(subtract, lista)
     elif operator == "/":
-        result = divide(to_int1, to_int2)
+        result = reduce(divide, lista)
     elif operator == "*":
-        result = multiply(to_int1, to_int2)
+        result = reduce(multiply, lista)
     elif operator == "pow":
-        result = power(to_int1, to_int2)
+        result = reduce(power, lista)
     elif operator == "mod":
-        result = mod(to_int1, to_int2)
+        result = reduce(mod, lista)
     elif operator == "square":
-        result = square(to_int1)
+        result = map(square, lista)
     elif operator == "cube":
-        result = cube(to_int1)
+        result = map(cube, lista)
     else:
         print "invalid input. Try again"
         continue
